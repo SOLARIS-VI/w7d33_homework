@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [number, setNumber] = useState(0);
+  const [doubleNum, setDoubleNum] = useState(0);
+
+  useEffect(()=>{
+    console.log("use effect triggered");
+    setDoubleNum(number *2);
+  },[number])
+
+
+  const handleInc = () => {
+    setNumber(number + 1);
+  };
+
+  const handleDec = () => {
+    setNumber(number - 1);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="title">INCREMENT & DECREMENT COUNTER</h1>
+      <div className="counter">
+        <button className="button" onClick={handleDec}>
+          -
+        </button>
+        <h2 className="number">Number is {number}</h2>
+        <button className="button" onClick={handleInc}>
+          +
+        </button>
+      </div>
+      <h2 className="double-number">Double num is: {doubleNum}</h2>
     </div>
   );
 }
